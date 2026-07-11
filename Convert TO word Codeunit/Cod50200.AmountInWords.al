@@ -37,11 +37,7 @@ codeunit 50200 "Amount In Words"
                 DecimalCurrencyText := '';
             end;
         end;
-
-        
         Result := MainCurrencyText + ' ' + ConvertToWords(WholePart);
-
-       
         if DecimalPart > 0 then begin
             if DecimalCurrencyText <> '' then
                 Result := Result + ' and ' + ConvertToWords(DecimalPart) + ' ' + DecimalCurrencyText

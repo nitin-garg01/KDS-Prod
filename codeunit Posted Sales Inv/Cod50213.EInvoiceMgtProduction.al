@@ -465,8 +465,6 @@ codeunit 50213 "E-Invoice Mgt Production"
     begin
         if QRText = '' then
             exit;
-
-
         JsonObj.Add('text', QRText);
         JsonObj.Add('size', 400);
         JsonObj.WriteTo(JsonText);

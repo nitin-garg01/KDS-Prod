@@ -2,7 +2,7 @@
   "id": "b4dbf778-e220-4219-929c-fd96f219de12",
   "name": "IT",
   "publisher": "KDS",
-  "version": "1.0.0.7",
+  "version": "1.0.0.8",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -10,8 +10,7 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [
-    
+  "dependencies": [    
        {
       "id": "db643212-b7fb-4dd4-b5a8-cb44ac714461",
       "name": "India GST",
@@ -24,7 +23,6 @@
       "name": "India Tax Base",
       "publisher": "Microsoft",
       "version": "27.5.46862.49825"
-  
     },
     {
       "id": "c1eafb3f-e397-468e-bdb4-ecc5c317ca00",
