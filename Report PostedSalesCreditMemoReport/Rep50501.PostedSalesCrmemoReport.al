@@ -168,21 +168,34 @@ report 50501 "Posted Sales Cr Memo Report"
                     trigger OnPreDataItem()
                     var
                         TotalRowsPerPage: Integer;
-                        ActualRowsCount: Integer;
+                        UsedRows: Integer;
                         TempSalesLine: Record "Sales Cr.Memo Line";
+                        CharsPerLine: Integer;
+                        LinesRequired: Integer;
                     begin
-                        // if SalesCreditmemo."Sell-to Country/Region Code" <> 'IN' then
-                        //     TotalRowsPerPage := 1
-                        // else
                         TotalRowsPerPage := 18;
+                        CharsPerLine := 42;
+
+                        UsedRows := 0;
 
                         TempSalesLine.SetRange("Document No.", SalesCreditmemo."No.");
-                        ActualRowsCount := TempSalesLine.Count();
 
-                        if ActualRowsCount < TotalRowsPerPage then
-                            BlankLines.SetRange(Number, 1, (TotalRowsPerPage - ActualRowsCount))
+                        if TempSalesLine.FindSet() then
+                            repeat
+                                LinesRequired := 1;
+
+                                if StrLen(TempSalesLine.Description) > CharsPerLine then
+                                    LinesRequired :=
+                                        (StrLen(TempSalesLine.Description) + CharsPerLine - 1) div CharsPerLine;
+
+                                UsedRows += LinesRequired;
+
+                            until TempSalesLine.Next() = 0;
+
+                        if UsedRows >= TotalRowsPerPage then
+                            CurrReport.Break()
                         else
-                            CurrReport.Break();
+                            BlankLines.SetRange(Number, 1, TotalRowsPerPage - UsedRows);
                     end;
                 }
             }

@@ -55,6 +55,7 @@ codeunit 50215 "E-Invoice Mgt Cr Prod"
         IgstTotal: Decimal;
         CgstTotal: Decimal;
         SgstTotal: Decimal;
+        CountryRegion: Record "Country/Region";
         GstRate: Decimal;
         LineIgst: Decimal;
         LineCgst: Decimal;
@@ -311,7 +312,13 @@ codeunit 50215 "E-Invoice Mgt Cr Prod"
                 else
                     DataObj.Add('Exp_ForCur', '');
 
-                DataObj.Add('Exp_CntCode', Rec."Bill-to Country/Region Code");
+                CountryRegion.Reset();
+                CountryRegion.SetRange(Code, Rec."Bill-to Country/Region Code");
+
+                if CountryRegion.FindFirst() then
+                    DataObj.Add('Exp_CntCode', CountryRegion."ISO Code")
+                else
+                    DataObj.Add('Exp_CntCode', '');
 
                 DataObj.Add('Exp_ExpDuty', '');
 

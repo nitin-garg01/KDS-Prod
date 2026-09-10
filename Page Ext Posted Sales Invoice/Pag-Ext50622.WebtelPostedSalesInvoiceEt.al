@@ -1,9 +1,8 @@
-pageextension 50622 "Webtel Posted sales invoice" extends "Posted sales Invoice"
-{
 
+pageextension 50622 "Webtel Posted sales invoice" extends "Posted Sales Invoice"
+{
     layout
     {
-
         addlast(General)
         {
             group("E-Invoice Details")
@@ -37,6 +36,7 @@ pageextension 50622 "Webtel Posted sales invoice" extends "Posted sales Invoice"
                     Visible = true;
                     Editable = false;
                 }
+
                 field("Cancel Date"; Rec."Cancel Date")
                 {
                     ApplicationArea = All;
@@ -49,118 +49,77 @@ pageextension 50622 "Webtel Posted sales invoice" extends "Posted sales Invoice"
                     ApplicationArea = All;
                     Visible = true;
                     Editable = false;
-
                 }
             }
         }
     }
+
     actions
     {
         modify("Generate IRN")
         {
             Visible = false;
         }
+
         modify("Cancel E-Invoice")
         {
             Visible = false;
         }
+
         addfirst(processing)
         {
-            // group("E-Invoice Group")
-            // {
-            //     Caption = 'Test E-Invoice Group';
-            //     action(ConvertToJSON)
-            //     {
-            //         ApplicationArea = All;
-            //         Caption = 'Convert to JSON';
-            //         Image = ExportMessage;
+            group("GST API Group")
+            {
+                Caption = 'GST API';
 
-            //         trigger OnAction()
-            //         var
-            //             EInvMgt: Codeunit "E-Invoice Mgt Sandbox";
-            //         begin
-            //             Message(EInvMgt.GetInvoiceJSON(Rec));
-            //         end;
-            //     }
+                action(ConvertToJSONGST)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Convert to JSON (GST)';
+                    Image = ExportMessage;
 
-            //     action(GenerateIRNWebtel)
-            //     {
-            //         ApplicationArea = All;
-            //         Caption = 'Generate IRN';
-            //         Image = ElectronicDoc;
+                    trigger OnAction()
+                    var
+                        GSTSalesAPI: Codeunit "GST Sales API";
+                        JsonText: Text;
+                    begin
+                        JsonText := GSTSalesAPI.GetSalesJSON(Rec);
+                        Message('%1', JsonText);
+                    end;
+                }
 
-            //         trigger OnAction()
-            //         var
-            //             EInvMgt: Codeunit "E-Invoice Mgt Sandbox";
-            //         begin
+                action(UploadGSTData)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Upload GST Data';
+                    Image = Export;
 
-            //             if Rec."IRN No." <> '' then
-            //                 Error('IRN is already generated for Invoice No. %1', Rec."No.");
-
-            //             EInvMgt.GenerateIRN(Rec);
-
-            //             CurrPage.Update(true);
-            //         end;
-            //     }
+                    trigger OnAction()
+                    var
+                        GSTSalesAPI: Codeunit "GST Sales API";
+                        ResponseText: Text;
+                    begin
 
 
+                        ResponseText := GSTSalesAPI.UploadSales(Rec);
 
-            //     action(OpenCancelDetails)
-            //     {
-            //         ApplicationArea = All;
-            //         Caption = 'IRN Cancel Details';
-            //         Image = Cancel;
-            //         trigger OnAction()
-            //         var
-            //             SalesInvHeader: Record "Sales Invoice Header";
-            //         begin
-            //             SalesInvHeader.Reset();
-            //             SalesInvHeader.SetRange("No.", Rec."No.");
-            //             Page.RunModal(Page::"Posted Sales Invoices Edit", SalesInvHeader);
-            //             CurrPage.Update();
-            //         end;
-            //     }
+                        Message('Response: %1', ResponseText);
 
+                        CurrPage.Update(true);
+                    end;
+                }
+            }
 
-            //     action(CancelIRN)
-            //     {
-            //         ApplicationArea = All;
-            //         Caption = 'IRN Cancel';
-            //         Image = Cancel;
-            //         trigger OnAction()
-            //         var
-            //             EInvoiceCancelMgt: Codeunit "E-Invoice Cancel IRN";
-            //             JsonText: Text;
-            //             EInvMgt: Codeunit "E-Invoice Mgt Sandbox";
-            //         begin
-            //             if Rec."IRN No." = '' then
-            //                 Error('IRN is not generated.');
-
-            //             if Rec."IRN Status" = Rec."IRN Status"::Cancelled then
-            //                 Error('IRN already cancelled.');
-
-
-            //             if not Confirm('Do you want to cancel IRN %1 ', false, Rec."IRN No.")
-            //             then
-            //                 exit;
-
-            //             EInvoiceCancelMgt.CancelIRN(Rec);
-
-            //             CurrPage.Update(false);
-            //         end;
-            //     }
-
-            // }
             group("E-Invoive Prod Group")
             {
                 Caption = 'Prod. E-Invoice Group';
+
                 action(ConvertToJsonProd)
                 {
                     ApplicationArea = All;
                     Caption = 'Convert to JSON (Prod)';
                     Image = ExportMessage;
-                    // Promoted = true;
-                    // PromotedCategory = Process;
+
                     trigger OnAction()
                     var
                         EInvMgt: Codeunit "E-Invoice Mgt Production";
@@ -168,35 +127,28 @@ pageextension 50622 "Webtel Posted sales invoice" extends "Posted sales Invoice"
                         Message(EInvMgt.GetInvoiceJSON(Rec));
                     end;
                 }
+
                 action(GenerateIRNWebtelProd)
                 {
                     ApplicationArea = All;
-                    Caption = 'Generate IRN Prod`';
+                    Caption = 'Generate IRN Prod';
                     Image = ElectronicDoc;
 
                     trigger OnAction()
                     var
                         EInvMgt: Codeunit "E-Invoice Mgt Production";
                     begin
-
-                        // if Rec."IRN No." <> '' then
-                        //     Error('IRN is already generated for Invoice No. %1', Rec."No.");
-
                         EInvMgt.GenerateIRN(Rec);
-
                         CurrPage.Update(true);
                     end;
                 }
-
-
 
                 action(OpenCancelDetailsProd)
                 {
                     ApplicationArea = All;
                     Caption = 'IRN Cancel Details Prod';
                     Image = Cancel;
-                    // Promoted = true;
-                    // PromotedCategory = Process;
+
                     trigger OnAction()
                     var
                         SalesInvHeader: Record "Sales Invoice Header";
@@ -208,42 +160,136 @@ pageextension 50622 "Webtel Posted sales invoice" extends "Posted sales Invoice"
                     end;
                 }
 
-
                 action(CancelIRNProd)
                 {
                     ApplicationArea = All;
                     Caption = 'IRN Cancel Prod';
                     Image = Cancel;
+
                     trigger OnAction()
                     var
                         EInvoiceCancelMgt: Codeunit "E-Invoice Cancel IRN Prod";
-                        JsonText: Text;
-                        EInvMgt: Codeunit "E-Invoice Mgt Production";
-                        GSTRegNos: record "GST Registration Nos.";
                     begin
-
-
                         if Rec."IRN No." = '' then
                             Error('IRN is not generated.');
 
                         if Rec."IRN Status" = Rec."IRN Status"::Cancelled then
                             Error('IRN already cancelled.');
 
-                        if not Confirm('Do you want to cancel IRN %1 ', false, Rec."IRN No.")
-                        then
+                        if not Confirm('Do you want to cancel IRN %1?', false, Rec."IRN No.") then
                             exit;
 
                         EInvoiceCancelMgt.CancelIRN(Rec);
-
                         CurrPage.Update(false);
                     end;
                 }
-
             }
+            group("Advance Tax API")
+            {
+                Caption = 'Advance Tax API';
 
+                action(ConvertAdvanceTaxToJSON)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Convert Advance Tax to JSON';
+                    Image = ExportMessage;
+
+                    trigger OnAction()
+                    var
+                        AdvanceTaxAPI: Codeunit "GST Advance Tax Sales";
+                    begin
+                        AdvanceTaxAPI.PreviewAdvanceTaxJSON(Rec);
+                    end;
+                }
+
+                action(UploadAdvanceTaxData)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Upload Advance Tax Data';
+                    Image = Export;
+
+                    trigger OnAction()
+                    var
+                        AdvanceTaxAPI: Codeunit "GST Advance Tax Sales";
+                    begin
+                        AdvanceTaxAPI.UploadSalesInvoice(Rec);
+                        CurrPage.Update(true);
+                    end;
+                }
+            }
+            group("Advance Adjustment Sale API")
+            {
+                Caption = 'Advance Adjustment Sale API';
+
+                action(ConvertAdvanceAdjustmentToJSON)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Convert Advance Adjustment to JSON';
+                    Image = ExportMessage;
+
+                    trigger OnAction()
+                    var
+                        AdvanceAdjustmentAPI: Codeunit "GST Advance Adjustment Sale";
+                    begin
+                        AdvanceAdjustmentAPI.PreviewAdvanceAdjustmentJSON(Rec);
+                    end;
+                }
+
+                action(UploadAdvanceAdjustmentData)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Upload Advance Adjustment Sale Data';
+                    Image = Export;
+
+                    trigger OnAction()
+                    var
+                        AdvanceAdjustmentAPI: Codeunit "GST Advance Adjustment Sale";
+                    begin
+                        AdvanceAdjustmentAPI.UploadSalesInvoice(Rec);
+                        CurrPage.Update(true);
+                    end;
+                }
+            }
+            group("HSN Summary Sale API")
+            {
+                Caption = 'HSN Summary Sale API';
+
+                action(ConvertHSNSummaryToJSON)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Convert HSN Summary to JSON';
+                    Image = ExportMessage;
+
+                    trigger OnAction()
+                    var
+                        HSNApi:
+                            Codeunit "GST HSN Summary Sale API";
+                    begin
+                        HSNApi.PreviewHSNSummaryJSON(
+                            Rec);
+                    end;
+                }
+
+                action(UploadHSNSummaryData)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Upload HSN Summary Data';
+                    Image = Export;
+
+                    trigger OnAction()
+                    var
+                        HSNApi:
+                            Codeunit "GST HSN Summary Sale API";
+                    begin
+                        HSNApi.UploadSalesInvoice(
+                            Rec);
+
+                        CurrPage.Update(true);
+                    end;
+                }
+            }
         }
     }
-
 
     local procedure GetJSONResponseText(): Text
     var

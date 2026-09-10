@@ -1,7 +1,6 @@
 report 50502 "KDS Posted Sales Invoice"
 {
-    //ApplicationArea = All;
-    //  Caption = 'KDS Posted Sales Invoice Report';
+
     UsageCategory = ReportsAndAnalysis;
 
     DefaultLayout = RDLC;
@@ -40,7 +39,7 @@ report 50502 "KDS Posted Sales Invoice"
                 column(SelltoCustomerNo; "Sell-to Customer No.") { }
                 column(No; "No.") { }
                 column(BilltoCustomerNo; "Bill-to Customer No.") { }
-
+                column(CountryName; CountryName) { }
                 column(BilltoName; "Bill-to Name") { }
                 column(BilltoName2; "Bill-to Name 2") { }
                 column(BilltoAddress; "Bill-to Address") { }
@@ -120,7 +119,7 @@ report 50502 "KDS Posted Sales Invoice"
 
                     column(No_; "No.") { }
 
-                    column(Description; Description) { }
+                    column(Description; SalesInvoiceLine.Description) { }
 
                     column(Quantity; Quantity) { }
 
@@ -156,7 +155,13 @@ report 50502 "KDS Posted Sales Invoice"
                             else
                                 StateName := '';
                         end;
+                        Clear(CountryName);
+
+                        if SalesInvoiceHeader."Sell-to Country/Region Code" <> 'IN' then
+                            if CountryRegion.Get(SalesInvoiceHeader."Sell-to Country/Region Code") then
+                                CountryName := CountryRegion.Name;
                     end;
+
                 }
 
                 dataitem(BlankLines; Integer)
@@ -168,17 +173,35 @@ report 50502 "KDS Posted Sales Invoice"
                     trigger OnPreDataItem()
                     var
                         TotalRowsPerPage: Integer;
-                        ActualRowsCount: Integer;
+                        UsedRows: Integer;
                         TempSalesLine: Record "Sales Invoice Line";
+                        CharsPerLine: Integer;
+                        LinesRequired: Integer;
                     begin
                         TotalRowsPerPage := 18;
+                        CharsPerLine := 42; // 6.11 cm + Segoe UI 9pt ke liye
+
+                        UsedRows := 0;
 
                         TempSalesLine.SetRange("Document No.", SalesInvoiceHeader."No.");
-                        ActualRowsCount := TempSalesLine.Count();
-                        if ActualRowsCount < TotalRowsPerPage then
-                            BlankLines.SetRange(Number, 1, (TotalRowsPerPage - ActualRowsCount))
+
+                        if TempSalesLine.FindSet() then
+                            repeat
+                                // Minimum 1 row
+                                LinesRequired := 1;
+
+                                if StrLen(TempSalesLine.Description) > CharsPerLine then
+                                    LinesRequired :=
+                                        (StrLen(TempSalesLine.Description) + CharsPerLine - 1) div CharsPerLine;
+
+                                UsedRows += LinesRequired;
+
+                            until TempSalesLine.Next() = 0;
+
+                        if UsedRows >= TotalRowsPerPage then
+                            CurrReport.Break()
                         else
-                            CurrReport.Break();
+                            BlankLines.SetRange(Number, 1, TotalRowsPerPage - UsedRows);
                     end;
                 }
             }
@@ -214,6 +237,7 @@ report 50502 "KDS Posted Sales Invoice"
         IGSTAmount: Decimal;
         CGSTAmount: Decimal;
         SGSTAmount: Decimal;
+        CountryName: Text[100];
 
         GrandTotal: Decimal;
 

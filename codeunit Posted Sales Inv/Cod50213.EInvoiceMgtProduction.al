@@ -60,6 +60,7 @@ codeunit 50213 "E-Invoice Mgt Production"
         GstRate: Decimal;
         LineIgst: Decimal;
         LineCgst: Decimal;
+        CountryRegion: Record "Country/Region";
         UnitofMeasureCode: record "Unit of Measure";
         LineSgst: Decimal;
         InvoiceTotal: Decimal;
@@ -275,7 +276,13 @@ codeunit 50213 "E-Invoice Mgt Production"
                 else
                     DataObj.Add('Exp_ForCur', '');
 
-                DataObj.Add('Exp_CntCode', Rec."Bill-to Country/Region Code");
+                CountryRegion.Reset();
+                CountryRegion.SetRange(Code, Rec."Bill-to Country/Region Code");
+
+                if CountryRegion.FindFirst() then
+                    DataObj.Add('Exp_CntCode', CountryRegion."ISO Code")
+                else
+                    DataObj.Add('Exp_CntCode', '');
 
                 DataObj.Add('Exp_ExpDuty', '');
 
