@@ -7,9 +7,7 @@ codeunit 50910 "GST HSN Summary Sale API"
         AuthorizationValue: Label 'Authorization /IalkRmh3z4=:::ZH4TUvIeJ3A=';
         MaxItems: Integer;
 
-    // ============================================================
-    // PUBLIC PROCEDURE - PREVIEW JSON
-    // ============================================================
+
 
     procedure PreviewHSNSummaryJSON(
         SalesInvoiceHeader: Record "Sales Invoice Header")
@@ -24,12 +22,9 @@ codeunit 50910 "GST HSN Summary Sale API"
     end;
 
 
-    // ============================================================
-    // PUBLIC PROCEDURE - GET JSON
-    // ============================================================
 
-    procedure GetHSNSummaryJSON(
-        SalesInvoiceHeader: Record "Sales Invoice Header"): Text
+
+    procedure GetHSNSummaryJSON(SalesInvoiceHeader: Record "Sales Invoice Header"): Text
     var
         RootObject: JsonObject;
         PushDataList: JsonArray;
@@ -42,19 +37,11 @@ codeunit 50910 "GST HSN Summary Sale API"
 
         CompanyInformation.Get();
 
-        YearValue :=
-            Date2DMY(
-                SalesInvoiceHeader."Posting Date",
-                3);
+        YearValue := Date2DMY(SalesInvoiceHeader."Posting Date", 3);
 
-        MonthValue :=
-            Date2DMY(
-                SalesInvoiceHeader."Posting Date",
-                2);
+        MonthValue := Date2DMY(SalesInvoiceHeader."Posting Date", 2);
 
-        BuildHSNSummary(
-            SalesInvoiceHeader,
-            PushDataList);
+        BuildHSNSummary(SalesInvoiceHeader, PushDataList);
 
         RootObject.Add(
             'Push_Data_List',
@@ -618,34 +605,27 @@ codeunit 50910 "GST HSN Summary Sale API"
     // GET GSTIN
     // ============================================================
 
-    local procedure GetGSTIN(
-        SalesInvoiceHeader: Record "Sales Invoice Header"): Code[20]
+    local procedure GetGSTIN(SalesInvoiceHeader: Record "Sales Invoice Header"): Code[20]
     var
         Location: Record Location;
         CompanyInformation: Record "Company Information";
     begin
         if SalesInvoiceHeader."Location Code" <> '' then begin
 
-            if Location.Get(
-                SalesInvoiceHeader."Location Code")
+            if Location.Get(SalesInvoiceHeader."Location Code")
             then begin
-
                 if Location."GST Registration No." <> '' then
-                    exit(
-                        Location."GST Registration No.");
+                    exit(Location."GST Registration No.");
             end;
         end;
 
         CompanyInformation.Get();
 
-        exit(
-            CompanyInformation."GST Registration No.");
+        exit(CompanyInformation."GST Registration No.");
     end;
 
 
-    // ============================================================
-    // GET GST AMOUNTS FROM DETAILED GST LEDGER ENTRY
-    // ============================================================
+
 
     local procedure GetGSTAmounts(
         DocumentNo: Code[20];
@@ -666,47 +646,31 @@ codeunit 50910 "GST HSN Summary Sale API"
 
         DetailedGSTLedgerEntry.Reset();
 
-        DetailedGSTLedgerEntry.SetRange(
-            "Document No.",
-            DocumentNo);
+        DetailedGSTLedgerEntry.SetRange("Document No.", DocumentNo);
 
-        DetailedGSTLedgerEntry.SetRange(
-            "Document Line No.",
-            DocumentLineNo);
+        DetailedGSTLedgerEntry.SetRange("Document Line No.", DocumentLineNo);
 
         if DetailedGSTLedgerEntry.FindSet() then
             repeat
 
-                GSTAmount :=
-                    Abs(
-                        DetailedGSTLedgerEntry."GST Amount");
+                GSTAmount := Abs(DetailedGSTLedgerEntry."GST Amount");
 
-                ComponentCode :=
-                    UpperCase(
-                        Format(
-                            DetailedGSTLedgerEntry."GST Component Code"));
+                ComponentCode := UpperCase(Format(DetailedGSTLedgerEntry."GST Component Code"));
 
                 if ComponentCode = 'IGST' then
-                    IGSTValue :=
-                        IGSTValue +
-                        GSTAmount;
+                    IGSTValue := IGSTValue + GSTAmount;
 
                 if ComponentCode = 'CGST' then
-                    CGSTValue :=
-                        CGSTValue +
-                        GSTAmount;
+                    CGSTValue := CGSTValue + GSTAmount;
 
                 if ComponentCode = 'SGST' then
-                    SGSTValue :=
-                        SGSTValue +
-                        GSTAmount;
+                    SGSTValue := SGSTValue + GSTAmount;
 
                 if ComponentCode = 'CESS' then
                     CessValue :=
-                        CessValue +
-                        GSTAmount;
+                        CessValue + GSTAmount;
 
-            until DetailedGSTLedgerEntry.Next() = 0;
+            until DetailedGSTLedgerEntry.Next() 0;
     end;
 
 
