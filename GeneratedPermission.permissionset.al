@@ -7,11 +7,20 @@ permissionset 50100 GeneratedPermission
     // codeunit "E-Invoice Mgt Cr Memo" = X,
         page "Posted Sales Invoices Edit" = X,
         report "KDS Posted Sales Invoice" = X,
-    // codeunit "E-Invoice Cancel Credit Memo" = X,
-    // codeunit "E-Invoice Cancel IRN" = X,
+
         page "Posted Sales Credit Memos List" = X,
         codeunit "E-Invoice Cancel CR Prod" = X,
         codeunit "E-Invoice Cancel IRN Prod" = X,
         codeunit "E-Invoice Mgt Cr Prod" = X,
-        codeunit "GST Part Master API" = X;
+        tabledata "Project Commission" = RIMD,
+        tabledata "Project Commission Calculation" = RIMD,
+        tabledata "Project Milestone" = RIMD,
+        table "Project Commission" = X,
+        table "Project Commission Calculation" = X,
+        table "Project Milestone" = X,
+        report "KDS Sales Invoice" = X,
+        page "Project Comm Calculation" = X,
+        page "Project Commission List Page" = X,
+        page "Project Milestone List Page" = X;
+    //   codeunit "GST Part Master API" = X;
 }
