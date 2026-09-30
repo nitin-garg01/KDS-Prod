@@ -66,6 +66,23 @@ table 50153 "Project Commission Calculation"
             Caption = 'Commission Level';
             TableRelation = "Project Commission"."Commission Level";
         }
+        field(9; "Payable To Type"; option)
+        {
+            Caption = 'Payable To Type';
+            OptionCaption = 'Employee,Vendor';
+            optionMembers = Employee,Vendor;
+            trigger OnValidate()
+            begin
+                clear("No.");
+            end;
+        }
+        field(10; "No."; Text[100])
+        {
+            Caption = 'No.';
+            TableRelation =
+        if ("Payable To Type" = const(Employee)) Employee."No."
+            else if ("Payable To Type" = const(Vendor)) Vendor."No.";
+        }
     }
     keys
     {

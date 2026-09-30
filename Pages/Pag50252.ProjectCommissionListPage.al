@@ -1,7 +1,7 @@
 page 50252 "Project Commission List Page"
 {
     ApplicationArea = All;
-    Caption = 'Project Commission List Page';
+    Caption = 'Project Commission List';
     PageType = List;
     SourceTable = "Project Commission";
     UsageCategory = Lists;

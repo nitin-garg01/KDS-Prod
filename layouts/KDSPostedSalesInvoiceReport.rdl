@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-09-25T10:43:36.7882222Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-09-29T12:33:42.7513333Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2705,7 +2705,7 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>PARTY REF. NO.</Value>
+                              <Value EvaluationMode="Constant">PARTY REF. NO.</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2913,72 +2913,6 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                       <Height>0.6cm</Height>
                       <Width>5.69cm</Width>
                       <ZIndex>8</ZIndex>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <Textbox Name="Textbox39">
-                      <rd:DefaultName>Textbox38</rd:DefaultName>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>PROJECT NAME</Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <Top>1.15895in</Top>
-                      <Height>0.23622in</Height>
-                      <Width>1.43078in</Width>
-                      <ZIndex>9</ZIndex>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <Textbox Name="Textbox33">
-                      <rd:DefaultName>Textbox25</rd:DefaultName>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>: </Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <Top>2.97901cm</Top>
-                      <Left>3.66947cm</Left>
-                      <Height>0.56472cm</Height>
-                      <Width>5.69001cm</Width>
-                      <ZIndex>10</ZIndex>
                       <Style>
                         <Border>
                           <Style>None</Style>

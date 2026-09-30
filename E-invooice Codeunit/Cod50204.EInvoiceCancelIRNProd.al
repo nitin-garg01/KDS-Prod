@@ -17,9 +17,6 @@ codeunit 50204 "E-Invoice Cancel IRN Prod"
 
         // JSON dekhne ke liye
         Message(JsonText);
-
-
-
         Content.WriteFrom(JsonText);
 
         Content.GetHeaders(Headers);

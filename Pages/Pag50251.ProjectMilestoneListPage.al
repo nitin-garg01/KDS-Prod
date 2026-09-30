@@ -1,7 +1,7 @@
 page 50251 "Project Milestone List Page"
 {
     ApplicationArea = All;
-    Caption = 'Project Milestone List Page';
+    Caption = 'Project Milestone List';
     PageType = List;
     SourceTable = "Project Milestone";
     UsageCategory = Lists;

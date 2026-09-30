@@ -39,11 +39,21 @@ page 50253 "Project Comm Calculation"
                 field("Commission Level Applicable"; Rec."Commission Level Applicable")
                 {
                     ToolTip = 'Specifies the value of the Commission Level Applicable field.', Comment = '%';
+                    Visible = false;
                 }
                 field("Commission Level"; Rec."Commission Level")
                 {
                     ToolTip = 'Specifies the value of the Commission Level field.', Comment = '%';
                 }
+                field(payableToType; Rec."Payable To Type")
+                {
+                    ToolTip = 'Specifies the value of the Payable To Type field.', Comment = '%';
+                }
+                field("No."; Rec."No.")
+                {
+                    ToolTip = 'Specifies the value of the No. field.', Comment = '%';
+                }
+
             }
         }
     }
