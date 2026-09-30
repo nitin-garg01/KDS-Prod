@@ -12,8 +12,6 @@ pageextension 50603 "Company Info Page Ext" extends "Company Information"
                     ShowCaption = true;
                     ToolTip = 'Signature';
                     caption = 'Signature ';
-
-
                 }
             }
         }
