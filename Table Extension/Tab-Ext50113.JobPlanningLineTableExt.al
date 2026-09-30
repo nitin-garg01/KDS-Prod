@@ -6,8 +6,7 @@ tableextension 50113 "Job Planning Line Table Ext" extends "Job Planning Line"
         {
             Caption = 'Attach To Milestone';
             DataClassification = ToBeClassified;
-            TableRelation =
-                "Project Commission Calculation".Milestone
+            TableRelation = "Project Commission Calculation".Milestone
                 where("Project No." = field("Job No."));
         }
     }
