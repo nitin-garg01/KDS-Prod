@@ -4,10 +4,9 @@ permissionset 50100 GeneratedPermission
     Permissions = codeunit "Amount In Words" = X,
         codeunit "E-Invoice Mgt Production" = X,
         report "Posted Sales Cr Memo Report" = X,
-    // codeunit "E-Invoice Mgt Cr Memo" = X,
+
         page "Posted Sales Invoices Edit" = X,
         report "KDS Posted Sales Invoice" = X,
-
         page "Posted Sales Credit Memos List" = X,
         codeunit "E-Invoice Cancel CR Prod" = X,
         codeunit "E-Invoice Cancel IRN Prod" = X,
@@ -21,6 +20,7 @@ permissionset 50100 GeneratedPermission
         report "KDS Sales Invoice" = X,
         page "Project Comm Calculation" = X,
         page "Project Commission List Page" = X,
-        page "Project Milestone List Page" = X;
-    //   codeunit "GST Part Master API" = X;
+        page "Project Milestone List Page" = X,
+        codeunit "GST Part Master API" = X;
+
 }
