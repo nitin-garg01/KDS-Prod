@@ -20,7 +20,7 @@ permissionset 50100 GeneratedPermission
         report "KDS Sales Invoice" = X,
         page "Project Comm Calculation" = X,
         page "Project Commission List Page" = X,
-        page "Project Milestone List Page" = X,
-        codeunit "GST Part Master API" = X;
+        page "Project Milestone List Page" = X;
+    // codeunit "GST Part Master API" = X;
 
 }

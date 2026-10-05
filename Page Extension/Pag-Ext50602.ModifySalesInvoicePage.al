@@ -39,5 +39,4 @@ pageextension 50602 "Modify Sales Invoice Page " extends "Sales Invoice"
 
     }
 
-
 }

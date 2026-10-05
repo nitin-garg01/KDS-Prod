@@ -5,6 +5,7 @@ page 50253 "Project Comm Calculation"
     PageType = List;
     SourceTable = "Project Commission Calculation";
     UsageCategory = Lists;
+    DelayedInsert = true;
 
     layout
     {
@@ -44,6 +45,14 @@ page 50253 "Project Comm Calculation"
                 field("Commission Level"; Rec."Commission Level")
                 {
                     ToolTip = 'Specifies the value of the Commission Level field.', Comment = '%';
+                }
+                field("Commission Level %"; Rec."Commission Level %")
+                {
+                    ToolTip = 'Specifies the value of the Commission Level % field.', Comment = '%';
+                }
+                field("Commission Amount"; Rec."Commission Amount")
+                {
+                    ToolTip = 'Specifies the value of the Commission Amount field.', Comment = '%';
                 }
                 field(payableToType; Rec."Payable To Type")
                 {
