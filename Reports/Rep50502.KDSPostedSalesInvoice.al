@@ -53,7 +53,8 @@ report 50502 "KDS Posted Sales Invoice"
                 column(Bill_to_County; "Bill-to County") { }
 
                 column(External_Document_No_; "External Document No.") { }
-
+                column(PartyRefLabel; PartyRefLabel) { }
+                column(PartyRefNo; PartyRefNo) { }
                 column(BilltoContact; "Bill-to Contact") { }
                 column(YourReference; "Your Reference") { }
 
@@ -168,6 +169,20 @@ report 50502 "KDS Posted Sales Invoice"
                         if SalesInvoiceHeader."Sell-to Country/Region Code" <> 'IN' then
                             if CountryRegion.Get(SalesInvoiceHeader."Sell-to Country/Region Code") then
                                 CountryName := CountryRegion.Name;
+
+
+
+
+                        Clear(PartyRefLabel);
+                        Clear(PartyRefNo);
+
+                        if SalesInvoiceHeader."External Document No." <> '' then begin
+                            PartyRefLabel := 'PARTY REF NO.';
+                            PartyRefNo := SalesInvoiceHeader."External Document No.";
+                        end;
+
+
+
                     end;
 
                 }
@@ -276,6 +291,8 @@ report 50502 "KDS Posted Sales Invoice"
         StateRec: Record State;
 
         VATRegNo: Text[20];
+        PartyRefLabel: Text;
+        PartyRefNo: Text;
 
     local procedure CalculateInvoiceTotals(DocNo: Code[20])
     var

@@ -61,6 +61,8 @@ report 50503 "KDS Sales Invoice"
 
                 column(External_Document_No_; "External Document No.") { }
 
+                column(PartyRefLabel; PartyRefLabel) { }
+                column(PartyRefNo; PartyRefNo) { }
                 column(BilltoContact; "Bill-to Contact") { }
                 column(YourReference; "Your Reference") { }
 
@@ -189,6 +191,15 @@ report 50503 "KDS Sales Invoice"
                                 SalesHeader."Sell-to Country/Region Code")
                             then
                                 CountryName := CountryRegion.Name;
+
+                        Clear(PartyRefLabel);
+                        Clear(PartyRefNo);
+
+                        if SalesHeader."External Document No." <> '' then begin
+                            PartyRefLabel := 'PARTY REF NO.';
+                            PartyRefNo := SalesHeader."External Document No.";
+                        end;
+
                     end;
                 }
 
@@ -276,7 +287,8 @@ report 50503 "KDS Sales Invoice"
         IGSTAmount: Decimal;
         CGSTAmount: Decimal;
         SGSTAmount: Decimal;
-
+        PartyRefLabel: Text;
+        PartyRefNo: Text;
         CountryName: Text[100];
 
         GrandTotal: Decimal;

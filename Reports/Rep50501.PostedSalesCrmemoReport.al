@@ -51,6 +51,8 @@ report 50501 "Posted Sales Cr Memo Report"
                 column(Bill_to_County; "Bill-to County") { }
 
                 column(External_Document_No_; "External Document No.") { }
+                column(PartyRefLabel; PartyRefLabel) { }
+                column(PartyRefNo; PartyRefNo) { }
 
                 column(BilltoContact; "Bill-to Contact") { }
                 column(YourReference; "Your Reference") { }
@@ -158,6 +160,15 @@ report 50501 "Posted Sales Cr Memo Report"
                             else
                                 StateName := '';
                         end;
+
+
+                        Clear(PartyRefLabel);
+                        Clear(PartyRefNo);
+
+                        if SalesCreditmemo."External Document No." <> '' then begin
+                            PartyRefLabel := 'PARTY REF NO.';
+                            PartyRefNo := SalesCreditmemo."External Document No.";
+                        end;
                     end;
                 }
 
@@ -175,7 +186,10 @@ report 50501 "Posted Sales Cr Memo Report"
                         CharsPerLine: Integer;
                         LinesRequired: Integer;
                     begin
-                        TotalRowsPerPage := 18;
+                        if SalesCreditmemo."Sell-to Country/Region Code" = 'IN' then
+                            TotalRowsPerPage := 17
+                        else
+                            TotalRowsPerPage := 18;
                         CharsPerLine := 42;
 
                         UsedRows := 0;
@@ -265,6 +279,8 @@ report 50501 "Posted Sales Cr Memo Report"
 
         VATRegNo: Text[20];
         CountryRegion: Record "Country/Region";
+        PartyRefLabel: Text;
+        PartyRefNo: Text;
 
     local procedure CalculateInvoiceTotals(DocNo: Code[20])
     var

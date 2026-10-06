@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-09-25T10:42:54.7969252Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-10-06T09:45:21.6404379Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2482,7 +2482,7 @@ Format(Fields!TaxableAmount.Value, "N2")
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>PARTY REF. NO.</Value>
+                              <Value>PLACE OF SUPPLY</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2515,7 +2515,7 @@ Format(Fields!TaxableAmount.Value, "N2")
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>PLACE OF SUPPLY</Value>
+                              <Value>=First(Fields!PartyRefLabel.Value, "DataSet_Result")</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2595,7 +2595,7 @@ Format(Fields!TaxableAmount.Value, "N2")
                               </Style>
                             </TextRun>
                             <TextRun>
-                              <Value>=First(Fields!External_Document_No_.Value, "DataSet_Result")</Value>
+                              <Value>=First(Fields!PlaceOfSupplyCode.Value, "DataSet_Result")</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2628,14 +2628,11 @@ Format(Fields!TaxableAmount.Value, "N2")
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>: </Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                            <TextRun>
-                              <Value>=First(Fields!PlaceOfSupplyCode.Value, "DataSet_Result")</Value>
+                              <Value>=IIF(
+Trim(First(Fields!PartyRefNo.Value, "DataSet_Result") &amp; "") = "",
+    "",
+    ": " &amp; First(Fields!PartyRefNo.Value, "DataSet_Result")
+)</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2690,72 +2687,6 @@ Format(Fields!TaxableAmount.Value, "N2")
                       <Height>0.6cm</Height>
                       <Width>5.69cm</Width>
                       <ZIndex>8</ZIndex>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <Textbox Name="Textbox39">
-                      <rd:DefaultName>Textbox38</rd:DefaultName>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>PROJECT NAME </Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <Top>1.15895in</Top>
-                      <Height>0.23622in</Height>
-                      <Width>1.43078in</Width>
-                      <ZIndex>9</ZIndex>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <Textbox Name="Textbox30">
-                      <rd:DefaultName>Textbox25</rd:DefaultName>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>: </Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <Top>2.94373cm</Top>
-                      <Left>3.63418cm</Left>
-                      <Height>0.56472cm</Height>
-                      <Width>5.72529cm</Width>
-                      <ZIndex>10</ZIndex>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -3657,6 +3588,12 @@ End Function
         </Field>
         <Field Name="External_Document_No_">
           <DataField>External_Document_No_</DataField>
+        </Field>
+        <Field Name="PartyRefLabel">
+          <DataField>PartyRefLabel</DataField>
+        </Field>
+        <Field Name="PartyRefNo">
+          <DataField>PartyRefNo</DataField>
         </Field>
         <Field Name="BilltoContact">
           <DataField>BilltoContact</DataField>
