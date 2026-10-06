@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-09-29T12:33:42.7513333Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-10-06T08:31:35.7708650Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2697,39 +2697,6 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <Textbox Name="Textbox42">
-                      <rd:DefaultName>Textbox42</rd:DefaultName>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value EvaluationMode="Constant">PARTY REF. NO.</Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <Top>0.69477in</Top>
-                      <Height>0.22796in</Height>
-                      <Width>1.43078in</Width>
-                      <ZIndex>3</ZIndex>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
                     <Textbox Name="Textbox38">
                       <rd:DefaultName>Textbox38</rd:DefaultName>
                       <CanGrow>true</CanGrow>
@@ -2738,7 +2705,7 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>PLACE OF SUPPLY</Value>
+                              <Value>PARTY REF NO.</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2749,10 +2716,10 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <Top>0.92273in</Top>
-                      <Height>0.23622in</Height>
+                      <Top>0.93662in</Top>
+                      <Height>0.22233in</Height>
                       <Width>1.43078in</Width>
-                      <ZIndex>4</ZIndex>
+                      <ZIndex>3</ZIndex>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -2792,47 +2759,7 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                       <Left>3.66947cm</Left>
                       <Height>0.6cm</Height>
                       <Width>5.72529cm</Width>
-                      <ZIndex>5</ZIndex>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <Textbox Name="Textbox26">
-                      <rd:DefaultName>Textbox25</rd:DefaultName>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>: </Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                            <TextRun>
-                              <Value>=First(Fields!External_Document_No_.Value, "DataSet_Result")</Value>
-                              <Style>
-                                <FontFamily>Segoe UI</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <Top>1.8cm</Top>
-                      <Left>3.63419cm</Left>
-                      <Height>0.54374cm</Height>
-                      <Width>5.72529cm</Width>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -2858,7 +2785,7 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                               </Style>
                             </TextRun>
                             <TextRun>
-                              <Value>=First(Fields!PlaceOfSupplyCode.Value, "DataSet_Result")</Value>
+                              <Value>=First(Fields!External_Document_No_.Value, "DataSet_Result")</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2872,7 +2799,7 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                       <Left>3.66948cm</Left>
                       <Height>0.56472cm</Height>
                       <Width>5.72529cm</Width>
-                      <ZIndex>7</ZIndex>
+                      <ZIndex>5</ZIndex>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -2910,8 +2837,81 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                       </Paragraphs>
                       <Top>1.2cm</Top>
                       <Left>3.66948cm</Left>
-                      <Height>0.6cm</Height>
+                      <Height>0.56472cm</Height>
                       <Width>5.69cm</Width>
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Textbox39">
+                      <rd:DefaultName>Textbox38</rd:DefaultName>
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>PLACE OF SUPPLY</Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <Top>0.69477in</Top>
+                      <Height>0.22796in</Height>
+                      <Width>1.43078in</Width>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Textbox33">
+                      <rd:DefaultName>Textbox25</rd:DefaultName>
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>: </Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=First(Fields!PlaceOfSupplyCode.Value, "DataSet_Result")</Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <Top>1.76472cm</Top>
+                      <Left>3.66948cm</Left>
+                      <Height>0.61429cm</Height>
+                      <Width>5.72529cm</Width>
                       <ZIndex>8</ZIndex>
                       <Style>
                         <Border>
@@ -2932,13 +2932,23 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                   <ZIndex>6</ZIndex>
                   <Style>
                     <Border>
-                      <Style>None</Style>
+                      <Style>Solid</Style>
                     </Border>
+                    <TopBorder>
+                      <Color>Black</Color>
+                      <Style>Solid</Style>
+                      <Width>1pt</Width>
+                    </TopBorder>
                     <BottomBorder>
                       <Color>Black</Color>
                       <Style>Solid</Style>
                       <Width>1pt</Width>
                     </BottomBorder>
+                    <LeftBorder>
+                      <Color>Black</Color>
+                      <Style>Solid</Style>
+                      <Width>1pt</Width>
+                    </LeftBorder>
                     <RightBorder>
                       <Color>Black</Color>
                       <Style>Solid</Style>
@@ -3369,7 +3379,7 @@ Format(Fields!Ack_Date.Value, "dd/MM/yyyy")
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>PARTY DETAIL'S</Value>
+                      <Value>PARTY DETAILS</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>9pt</FontSize>

@@ -77,87 +77,87 @@
 
 
 
-//             group("Advance Tax Purchase API")
-//             {
-//                 Caption = 'Advance Tax Purchase API';
+//             // group("Advance Tax Purchase API")
+//             // {
+//             //     Caption = 'Advance Tax Purchase API';
 
-//                 action(ConvertAdvanceTaxPurchaseToJSON)
-//                 {
-//                     ApplicationArea = All;
-//                     Caption = 'Convert Advance Tax Purchase to JSON';
-//                     Image = ExportMessage;
-//                     ToolTip = 'Convert the posted purchase invoice data into Advance Tax Purchase JSON.';
+//             //     action(ConvertAdvanceTaxPurchaseToJSON)
+//             //     {
+//             //         ApplicationArea = All;
+//             //         Caption = 'Convert Advance Tax Purchase to JSON';
+//             //         Image = ExportMessage;
+//             //         ToolTip = 'Convert the posted purchase invoice data into Advance Tax Purchase JSON.';
 
-//                     trigger OnAction()
-//                     var
-//                         GSTAdvanceTaxPurchase:
-//                             Codeunit "GST Advance Tax Purchase";
-//                     begin
-//                         GSTAdvanceTaxPurchase.PreviewAdvanceTaxPurchaseJSON(Rec);
-//                     end;
-//                 }
+//             //         trigger OnAction()
+//             //         var
+//             //             GSTAdvanceTaxPurchase:
+//             //                 Codeunit "GST Advance Tax Purchase";
+//             //         begin
+//             //             GSTAdvanceTaxPurchase.PreviewAdvanceTaxPurchaseJSON(Rec);
+//             //         end;
+//             //     }
 
-//                 action(UploadAdvanceTaxPurchaseData)
-//                 {
-//                     ApplicationArea = All;
-//                     Caption = 'Upload Advance Tax Purchase Data';
-//                     Image = Export;
-//                     ToolTip = 'Upload the purchase invoice Advance Tax data to the GST server.';
+//             //     action(UploadAdvanceTaxPurchaseData)
+//             //     {
+//             //         ApplicationArea = All;
+//             //         Caption = 'Upload Advance Tax Purchase Data';
+//             //         Image = Export;
+//             //         ToolTip = 'Upload the purchase invoice Advance Tax data to the GST server.';
 
-//                     trigger OnAction()
-//                     var
-//                         GSTAdvanceTaxPurchase:
-//                             Codeunit "GST Advance Tax Purchase";
-//                     begin
-//                         GSTAdvanceTaxPurchase.UploadPurchaseInvoice(Rec);
+//             //         trigger OnAction()
+//             //         var
+//             //             GSTAdvanceTaxPurchase:
+//             //                 Codeunit "GST Advance Tax Purchase";
+//             //         begin
+//             //             GSTAdvanceTaxPurchase.UploadPurchaseInvoice(Rec);
 
-//                         CurrPage.Update(true);
-//                     end;
-//                 }
-//             }
+//             //             CurrPage.Update(true);
+//             //         end;
+//             //     }
+//             // }
 
 
-//             // ====================================================
-//             // ADVANCE ADJUSTMENT PURCHASE API
-//             // ====================================================
-//             group("Advance Adjustment Purchase API")
-//             {
-//                 Caption = 'Advance Adjustment Purchase API';
+//             // // ====================================================
+//             // // ADVANCE ADJUSTMENT PURCHASE API
+//             // // ====================================================
+//             // group("Advance Adjustment Purchase API")
+//             // {
+//             //     Caption = 'Advance Adjustment Purchase API';
 
-//                 action(ConvertAdvanceAdjustmentPurchaseToJSON)
-//                 {
-//                     ApplicationArea = All;
-//                     Caption = 'Convert Advance Adjustment Purchase to JSON';
-//                     Image = ExportMessage;
-//                     ToolTip = 'Convert the posted purchase invoice data into Advance Adjustment Purchase JSON.';
+//             //     action(ConvertAdvanceAdjustmentPurchaseToJSON)
+//             //     {
+//             //         ApplicationArea = All;
+//             //         Caption = 'Convert Advance Adjustment Purchase to JSON';
+//             //         Image = ExportMessage;
+//             //         ToolTip = 'Convert the posted purchase invoice data into Advance Adjustment Purchase JSON.';
 
-//                     trigger OnAction()
-//                     var
-//                         GSTAdvanceAdjustmentPurchase:
-//                             Codeunit "GST Advance Adjust. Purchase";
-//                     begin
-//                         GSTAdvanceAdjustmentPurchase.PreviewAdvanceAdjustmentPurchaseJSON(Rec);
-//                     end;
-//                 }
+//             //         trigger OnAction()
+//             //         var
+//             //             GSTAdvanceAdjustmentPurchase:
+//             //                 Codeunit "GST Advance Adjust. Purchase";
+//             //         begin
+//             //             GSTAdvanceAdjustmentPurchase.PreviewAdvanceAdjustmentPurchaseJSON(Rec);
+//             //         end;
+//             //     }
 
-//                 action(UploadAdvanceAdjustmentPurchaseData)
-//                 {
-//                     ApplicationArea = All;
-//                     Caption = 'Upload Advance Adjustment Purchase Data';
-//                     Image = Export;
-//                     ToolTip = 'Upload the purchase invoice Advance Adjustment data to the GST server.';
+//             //     action(UploadAdvanceAdjustmentPurchaseData)
+//             //     {
+//             //         ApplicationArea = All;
+//             //         Caption = 'Upload Advance Adjustment Purchase Data';
+//             //         Image = Export;
+//             //         ToolTip = 'Upload the purchase invoice Advance Adjustment data to the GST server.';
 
-//                     trigger OnAction()
-//                     var
-//                         GSTAdvanceAdjustmentPurchase:
-//                             Codeunit "GST Advance Adjust. Purchase";
-//                     begin
-//                         GSTAdvanceAdjustmentPurchase.UploadPurchaseInvoice(Rec);
+//             //         trigger OnAction()
+//             //         var
+//             //             GSTAdvanceAdjustmentPurchase:
+//             //                 Codeunit "GST Advance Adjust. Purchase";
+//             //         begin
+//             //             GSTAdvanceAdjustmentPurchase.UploadPurchaseInvoice(Rec);
 
-//                         CurrPage.Update(true);
-//                     end;
-//                 }
-//             }
+//             //             CurrPage.Update(true);
+//             //         end;
+//             //     }
+//             // }
 //         }
 //     }
 // }

@@ -8,8 +8,7 @@ page 50254 "Posted Sales Invoices Edit"
     ModifyAllowed = true;
     DeleteAllowed = false;
     SourceTable = "Sales Invoice Header";
-    SourceTableView = sorting("Posting Date")
-                      order(descending);
+    SourceTableView = sorting("Posting Date") order(descending);
     UsageCategory = History;
     Permissions = TableData "Sales Invoice Header" = Rimd;
 
