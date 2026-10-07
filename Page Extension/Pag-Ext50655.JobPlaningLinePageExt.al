@@ -4,12 +4,6 @@ pageextension 50655 "Job Planing Line Page Ext" extends "Job Planning Lines"
     {
         addafter("Document No.")
         {
-            field("Is Commission ?"; Rec."Is Commission ?")
-            {
-                ApplicationArea = All;
-                visible = true;
-                ToolTip = 'Specifies the value of the Is Commission field.';
-            }
             field("Attach To Milestone"; Rec."Attach To Milestone")
             {
                 ApplicationArea = All;
@@ -17,6 +11,13 @@ pageextension 50655 "Job Planing Line Page Ext" extends "Job Planning Lines"
 
                 ToolTip = 'Specifies the value of the Attach To Milestone field.';
             }
+            field("Is Commission ?"; Rec."Is Commission ?")
+            {
+                ApplicationArea = All;
+                visible = true;
+                ToolTip = 'Specifies the value of the Is Commission field.';
+            }
+
             field("Comm Level"; Rec."Comm Level")
             {
                 ApplicationArea = All;
@@ -28,12 +29,13 @@ pageextension 50655 "Job Planing Line Page Ext" extends "Job Planning Lines"
         }
         addafter("Invoiced Amount (LCY)")
         {
-            field("Payment Received"; Rec."Payment Received")
+            field(PaymentReceivedCalc; Rec.CalculatePaymentReceived())
             {
                 ApplicationArea = All;
-                visible = true;
-                editable = false;
-                ToolTip = 'Specifies the value of the Payment Received field.';
+                Caption = 'Payment Received';
+                Visible = true;
+                Editable = false;
+                ToolTip = 'Specifies the payment received against the posted invoice of this line.';
             }
         }
 
@@ -47,10 +49,5 @@ pageextension 50655 "Job Planing Line Page Ext" extends "Job Planning Lines"
 
     }
 
-    trigger OnAfterGetRecord()
-    begin
-        Rec."Payment Received" := Rec.CalculatePaymentReceived();
 
-
-    end;
 }

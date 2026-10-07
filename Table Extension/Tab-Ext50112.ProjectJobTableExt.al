@@ -21,7 +21,7 @@ tableextension 50112 "Project Job Table Ext" extends Job
                 "Job Planning Line"."Total Cost"
                 where(
                     "Job No." = field("No."),
-                    "Contract Line" = const(false)
+                    "Schedule Line" = const(true)
                 )
             );
 

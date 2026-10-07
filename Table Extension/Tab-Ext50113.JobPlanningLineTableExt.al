@@ -51,11 +51,8 @@ tableextension 50113 "Job Planning Line Table Ext" extends "Job Planning Line"
                 ProjectCommission.SetRange("Commission Level", "Comm Level");
 
                 if ProjectCommission.FindFirst() then begin
-                    // Commission Amount becomes Unit Price
-                    Validate(
-                        "Unit Price",
-                        ProjectCommission."Commission Amount"
-                    );
+
+                    Validate("Unit Price", ProjectCommission."Commission Amount");
                 end;
             end;
         }
@@ -82,33 +79,39 @@ tableextension 50113 "Job Planning Line Table Ext" extends "Job Planning Line"
     }
     procedure CalculatePaymentReceived(): Decimal
     var
+        JobPlanningLineInvoice: Record "Job Planning Line Invoice";
         CustLedgEntry: Record "Cust. Ledger Entry";
         DetailedCustLedgEntry: Record "Detailed Cust. Ledg. Entry";
         PaymentReceived: Decimal;
     begin
 
-        if "Document No." = '' then
+        if Rec."Invoiced Amount (LCY)" = 0 then
             exit(0);
 
-        // Find the customer ledger entry for the invoice
-        CustLedgEntry.Reset();
-        CustLedgEntry.SetRange("Document No.", "Document No.");
+        JobPlanningLineInvoice.SetRange("Job No.", Rec."Job No.");
+        JobPlanningLineInvoice.SetRange("Job Task No.", Rec."Job Task No.");
+        JobPlanningLineInvoice.SetRange("Job Planning Line No.", Rec."Line No.");
+        JobPlanningLineInvoice.SetRange("Document Type", JobPlanningLineInvoice."Document Type"::"Posted Invoice");
 
-        if CustLedgEntry.FindSet() then
+        if JobPlanningLineInvoice.FindSet() then
             repeat
-                // Find applications against this invoice
-                DetailedCustLedgEntry.Reset();
-                DetailedCustLedgEntry.SetRange("Cust. Ledger Entry No.", CustLedgEntry."Entry No.");
-                DetailedCustLedgEntry.SetRange("Entry Type", DetailedCustLedgEntry."Entry Type"::Application);
-                DetailedCustLedgEntry.SetRange("Document Type", DetailedCustLedgEntry."Document Type"::Payment);
+                CustLedgEntry.Reset();
+                CustLedgEntry.SetRange("Document Type", CustLedgEntry."Document Type"::Invoice);
+                CustLedgEntry.SetRange("Document No.", JobPlanningLineInvoice."Document No.");
 
-                if DetailedCustLedgEntry.FindSet() then
+                if CustLedgEntry.FindSet() then
                     repeat
-                        PaymentReceived += Abs(DetailedCustLedgEntry.Amount);
-                    until DetailedCustLedgEntry.Next() = 0;
+                        DetailedCustLedgEntry.Reset();
+                        DetailedCustLedgEntry.SetRange("Cust. Ledger Entry No.", CustLedgEntry."Entry No.");
+                        DetailedCustLedgEntry.SetRange("Entry Type", DetailedCustLedgEntry."Entry Type"::Application);
+                        DetailedCustLedgEntry.SetRange(Unapplied, false);
 
-            until CustLedgEntry.Next() = 0;
-
+                        if DetailedCustLedgEntry.FindSet() then
+                            repeat
+                                PaymentReceived += Abs(DetailedCustLedgEntry.Amount);
+                            until DetailedCustLedgEntry.Next() = 0;
+                    until CustLedgEntry.Next() = 0;
+            until JobPlanningLineInvoice.Next() = 0;
         exit(PaymentReceived);
     end;
 }
