@@ -26,12 +26,8 @@ tableextension 50113 "Job Planning Line Table Ext" extends "Job Planning Line"
             Caption = 'Commission Level';
             DataClassification = ToBeClassified;
 
-            TableRelation =
-        "Project Commission Calculation"."Commission Level"
-        where(
-            "Project No." = field("Job No."),
-            Milestone = field("Attach To Milestone")
-        );
+            TableRelation = "Project Commission Calculation"."Commission Level"
+        where("Project No." = field("Job No."), Milestone = field("Attach To Milestone"));
 
             trigger OnValidate()
             var

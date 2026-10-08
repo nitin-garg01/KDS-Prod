@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-10-06T09:45:21.6404379Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-10-08T07:09:47.0767639Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -3098,7 +3098,7 @@ Trim(First(Fields!PartyRefNo.Value, "DataSet_Result") &amp; "") = "",
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>PARTY DETAIL'S</Value>
+                      <Value>PARTY DETAILS</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>9pt</FontSize>
