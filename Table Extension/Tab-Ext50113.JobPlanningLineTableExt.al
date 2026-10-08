@@ -101,7 +101,6 @@ tableextension 50113 "Job Planning Line Table Ext" extends "Job Planning Line"
                         DetailedCustLedgEntry.SetRange("Cust. Ledger Entry No.", CustLedgEntry."Entry No.");
                         DetailedCustLedgEntry.SetRange("Entry Type", DetailedCustLedgEntry."Entry Type"::Application);
                         DetailedCustLedgEntry.SetRange(Unapplied, false);
-
                         if DetailedCustLedgEntry.FindSet() then
                             repeat
                                 PaymentReceived += Abs(DetailedCustLedgEntry.Amount);
