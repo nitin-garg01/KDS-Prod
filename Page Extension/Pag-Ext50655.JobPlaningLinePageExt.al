@@ -42,7 +42,7 @@ pageextension 50655 "Job Planing Line Page Ext" extends "Job Planning Lines"
         modify("Unit Price")
         {
             Visible = true;
-            Editable = Rec."Is Commission ?";
+            //  Editable = Rec."Is Commission ?";
             ToolTip = 'Specifies the value of the Unit Price field.';
         }
         modify("Line Amount")

@@ -15,7 +15,7 @@ codeunit 50204 "E-Invoice Cancel IRN Prod"
     begin
         JsonText := GetCancelJSON(SalesInvHeader);
 
-        // JSON dekhne ke liye
+        // for view the json text in message box
         Message(JsonText);
         Content.WriteFrom(JsonText);
 
@@ -161,6 +161,4 @@ codeunit 50204 "E-Invoice Cancel IRN Prod"
             exit(JToken.AsValue().AsText());
         exit('');
     end;
-
-
 }
