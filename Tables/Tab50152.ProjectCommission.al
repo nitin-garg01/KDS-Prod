@@ -14,11 +14,20 @@ table 50152 "Project Commission"
             Caption = 'Level Descritpion';
         }
     }
+
+
+
     keys
     {
         key(PK; "Commission Level")
         {
             Clustered = true;
+        }
+    }
+    fieldgroups
+    {
+        fieldgroup(DropDown; "Commission Level", "Level Descritpion")
+        {
         }
     }
 }

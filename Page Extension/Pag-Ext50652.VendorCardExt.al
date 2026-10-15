@@ -1,6 +1,5 @@
 // pageextension 50652 "Vendor Card GST Ext" extends "Vendor Card"
 // {
-
 //     layout
 //     {
 //         addlast(general)
