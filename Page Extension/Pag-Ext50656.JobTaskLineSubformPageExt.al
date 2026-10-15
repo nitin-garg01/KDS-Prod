@@ -20,7 +20,6 @@ pageextension 50656 JobTaskLineSubformPageExt extends "Job Task Lines Subform"
         {
             visible = true;
             Caption = 'Global Dimension 2 Code';
-
         }
     }
 }
